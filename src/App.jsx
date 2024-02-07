@@ -1,13 +1,21 @@
+import { useState } from "react";
+
 import { ThemeProvider } from "styled-components";
+import { NavBar } from "./components/navbar";
+import { Screen } from "./style";
 import { darkTheme, lightTheme } from "./style/theme";
-import { Flex, Screen, Tipography } from "./style";
 
 function App() {
+  const [ theme, setTheme] = useState('dark')
+
+  const themeToggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light')
+  }
   return (
     <>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <Screen>
-          <Tipography>Hellow Word</Tipography>
+          <NavBar themeToggler={themeToggler} theme={theme}/>
         </Screen>
       </ThemeProvider>
     </>
@@ -15,4 +23,3 @@ function App() {
 }
 
 export default App;
-
