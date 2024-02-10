@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const Screen = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -34,11 +34,11 @@ export const Flex = styled.div`
   `}
 `;
 
-export const Tipography = styled.p`
+export const Typography = styled.p`
   ${(props) => css`
     font-style: ${props.style || "normal"};
     font-weight: ${props.weght || "500"};
-    font-size: ${props.size || "18px"};
+    font-size: ${props.size || "17px"};
     line-height: ${props.height || "21px"};
     color: ${props.theme.textPrimary};
   `}
@@ -46,7 +46,7 @@ export const Tipography = styled.p`
 
 export const Spacer = styled.div`
   width: 100%;
-  margin: ${(props) => props.margin || "20px"};
+  margin: ${(props) => props.margin || "15px"};
 `;
 
 export const Button = styled.button`
