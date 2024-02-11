@@ -15,11 +15,7 @@ export const containerPublications = styled.div`
   gap: 12px;
   height: 320px;
   overflow-y: scroll;
-`;
 
-export const Content = styled.div``;
-
-export const PublicationImage = styled.img`
   &::-webkit-scrollbar {
     width: 4px;
     height: 4px;
@@ -33,4 +29,17 @@ export const PublicationImage = styled.img`
     background-color: ${(props) => props.theme.textPrimary};
     border-radius: 20px;
   }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  width: 240px;
+  gap: 20px;
+  flex-direction: column;
+`;
+
+export const PublicationImage = styled.img`
+width: 100%;
+height: 220px;
+border-radius: 20px;
 `;

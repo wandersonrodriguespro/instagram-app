@@ -12,12 +12,12 @@ export function Stories() {
   }
 
   return (
-    <Flex padding="8px 20px" align="start" gap="4px">
+    <Flex padding="8px 20px" align="start" gap="2px">
       <Typography weight="400" size="18px" height="21px">
         Stories
       </Typography>
 
-      <Flex align="end">
+      <Flex align="end" gap="0px">
         <Button onClick={() => handleShowAll()}>
           <Typography size="18px">{showAll ? "Ver menos" : "Ver mais"}</Typography>
         </Button>

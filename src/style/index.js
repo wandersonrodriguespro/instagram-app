@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const Screen = styled.div`
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: row;
   align-items: start;
