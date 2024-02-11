@@ -1,19 +1,38 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
+
+import { Header } from "./components/header";
 import { NavBar } from "./components/navbar";
+import { Publications } from "./components/publications";
+import { Stories } from "./components/stories";
+import { getPhotos } from "./services/photos";
+
 import { Flex, Screen } from "./style";
 import { darkTheme, lightTheme } from "./style/theme";
-import { Header } from "./components/header";
-import { Stories } from "./components/stories";
-import { Publications } from "./components/publications";
 
 function App() {
-  const [ theme, setTheme] = useState('dark')
+  const PHOTOS_PER_PAGE = 20;
+
+  const [theme, setTheme] = useState("dark");
+  const [photos, setPhotos] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [photosPerPage, setphotosPerPage] = useState(PHOTOS_PER_PAGE);
+
+  const releaseLoading = () => setIsLoading(false);
 
   const themeToggler = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light')
+    theme === "light" ? setTheme("dark") : setTheme("light");
+  };
+
+  async function fetchPhotos() {
+    const data = await getPhotos(photosPerPage, releaseLoading);
+    setPhotos(data);
   }
+
+  useEffect(() => {
+    fetchPhotos();
+  }, []);
+
   return (
     <>
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
@@ -21,8 +40,8 @@ function App() {
           <NavBar themeToggler={themeToggler} theme={theme} />
           <Flex gap="2px">
             <Header />
-            <Stories />
-            <Publications/>
+            <Stories photos={photos} />
+            <Publications photos={photos} />
           </Flex>
         </Screen>
       </ThemeProvider>
