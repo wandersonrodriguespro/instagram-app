@@ -10,10 +10,13 @@ export const Container = styled.div`
 
 export const containerPublications = styled.div`
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
-  height: 320px;
+  height: calc(100vh - 322px);
+  /* height: 320px; */
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
@@ -29,6 +32,13 @@ export const containerPublications = styled.div`
     background-color: ${(props) => props.theme.textPrimary};
     border-radius: 20px;
   }
+
+  @media screen and (max-width: 1300px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (max-width: 1050px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export const Content = styled.div`
@@ -39,7 +49,10 @@ export const Content = styled.div`
 `;
 
 export const PublicationImage = styled.img`
-width: 100%;
-height: 220px;
-border-radius: 20px;
+  width: 100%;
+  height: 220px;
+  border-radius: 20px;
 `;
+
+
+

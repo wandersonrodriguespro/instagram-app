@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ReactLoading from "react-loading";
 import { ThemeProvider } from "styled-components";
 
 import { Header } from "./components/header";
@@ -7,11 +8,11 @@ import { Publications } from "./components/publications";
 import { Stories } from "./components/stories";
 import { getPhotos } from "./services/photos";
 
-import { Flex, Screen } from "./style";
+import { Button, Flex, Screen, Typography, ContainerLimite, Root } from "./style";
 import { darkTheme, lightTheme } from "./style/theme";
 
 function App() {
-  const PHOTOS_PER_PAGE = 20;
+  const PHOTOS_PER_PAGE = 8;
 
   const [theme, setTheme] = useState("dark");
   const [photos, setPhotos] = useState([]);
@@ -24,28 +25,42 @@ function App() {
     theme === "light" ? setTheme("dark") : setTheme("light");
   };
 
+  const handlePhotosPerPage = () => {
+    setphotosPerPage(photosPerPage + PHOTOS_PER_PAGE);
+  };
+
   async function fetchPhotos() {
+    setIsLoading(true);
     const data = await getPhotos(photosPerPage, releaseLoading);
     setPhotos(data);
   }
 
   useEffect(() => {
     fetchPhotos();
-  }, []);
+  }, [photosPerPage]);
 
   return (
-    <>
-      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-        <Screen>
-          <NavBar themeToggler={themeToggler} theme={theme} />
-          <Flex gap="2px">
-            <Header />
-            <Stories photos={photos} />
-            <Publications photos={photos} />
-          </Flex>
-        </Screen>
-      </ThemeProvider>
-    </>
+    
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme} >
+          <ContainerLimite>
+          <Screen>
+            <NavBar themeToggler={themeToggler} theme={theme} />
+            <Flex gap="2px" padding="0 0 20px">
+              <Header />
+              <Stories photos={photos} />
+              <Publications photos={photos} />
+              {isLoading ? (
+                <ReactLoading type="spinningBubbles" color={theme.textPrimary} height={20} width={20} />
+              ) : (
+                <Button onClick={handlePhotosPerPage}>
+                  <Typography>Ver mais</Typography>
+                </Button>
+              )}
+            </Flex>
+          </Screen>
+      </ContainerLimite>
+        </ThemeProvider>
+    
   );
 }
 

@@ -11,9 +11,23 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export const Screen = styled.div`
+export const ContainerLimite = styled.div`
   width: 100%;
-  height: 100vh;
+  margin: auto;
+  background-color: ${(props) => props.theme.primary};
+`;
+
+export const Root = styled.div`
+  #root {
+    background: black;
+  }
+`;
+
+export const Screen = styled.div`
+max-width:1600px;
+margin: auto;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
   align-items: start;

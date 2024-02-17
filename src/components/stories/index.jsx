@@ -22,6 +22,7 @@ export function Stories({ photos }) {
           <Typography size="18px">{showAll ? "Ver menos" : "Ver mais"}</Typography>
         </Button>
 
+      </Flex>
         <C.Container>
           {photos.map((photo) => (
             <C.Profile key={photo?.id}>
@@ -29,7 +30,6 @@ export function Stories({ photos }) {
             </C.Profile>
           ))}
         </C.Container>
-      </Flex>
     </Flex>
   );
 }

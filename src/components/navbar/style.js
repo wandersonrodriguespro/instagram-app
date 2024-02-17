@@ -11,7 +11,7 @@ export const Container = styled.div`
   ${(props) => css`
     background-color: ${props.theme.primary};
     border: ${`1px solid ${props.theme.primary}`};
-    box-shadow: ${`9px 0px 33px 39px ${props.theme.boxShadow}`};
+    box-shadow: ${`22px 0px 21px 0px ${props.theme.boxShadow}`};
   `}
 `;
 
